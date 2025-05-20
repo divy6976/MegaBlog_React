@@ -13,7 +13,7 @@ const [loading, setLoading] = useState(true)
 
 const dispatch = useDispatch() //State change krunga toh dispatch function use krunga
 useEffect(()=>{                  //jaise hi page load hoga useEffect chalega aur authService se user ki details lenge pucho 
-// ga ki kya user login hai ya nahi
+//  ga ki kya user login hai ya nahi
   authService.getCurrentUser()
   .then((userData)=>{
     if(userData){
@@ -22,7 +22,7 @@ useEffect(()=>{                  //jaise hi page load hoga useEffect chalega aur
       dispatch(logout());
     }
   })
-  .finally(()=>setLoading(false))  //ye run hota hai hai
+  .finally(()=>setLoading(false))  //ye run hota hai hai 
 },[])
  
 return  !loading ? (
