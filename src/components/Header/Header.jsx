@@ -1,7 +1,7 @@
 import React from 'react'
 import {Container,Logo,LogoutBtn} from '../index'
 import {Link} from 'react-router-dom'   //redirection ke liye kuch links bhi lgenge
-import { useSelector } from 'react-redux' // isse store me jake dekh paounga user logged in hai ya nhi
+import { useSelector } from 'react-redux'   // isse store me jake dekh paounga user logged in hai ya nhi
 
 import { useNavigate } from 'react-router-dom'
 
@@ -15,9 +15,14 @@ function Header() {
     {
       name: 'Home',
       slug: "/",     //slug means url kaha jaa rha hai
+
       active: true
-    }, 
+    },
+    
+      
+
     {
+      
       name: "Login",
       slug: "/login",
       active: !authStatus,
@@ -25,7 +30,7 @@ function Header() {
   {
       name: "Signup",
       slug: "/signup",                 //jin pe status true hoga unka display krnege
-      active: !authStatus,              //user agar login hai toh login aur isgnup btn dikhana hi kyu hi
+      active: !authStatus,              //user agar login hai toh login aur signup btn dikhana hi kyu hi
   },
   {
       name: "All Posts",
@@ -50,16 +55,25 @@ function Header() {
 <Logo width='70px'/>
 
 </Link>
-          </div>       //bahar hai unordered list jisme krayenge loop 
+          </div> 
+            {/* bahar hai unordered list jisme krayenge loop  */}
 
-          <ul className='flex ml-auto  '>
-            {navItems.map((item)=>                                       //{} ke anadr isliye likha kyuki ye jsc me likha gya hai   jsx me javascript run krega
+          <ul className='flex ml-auto  '>         
+            {navItems.map((item)=>                                       //{} ke anadr isliye likha kyuki ye jsx me likha gya hai   jsx me javascript run krega
        item.active ? (
-        <li key={item.name}>
-<button>{item.name}</button>                                    //isme navigtion wala kaam   
-        </li>                                                               //jo html elemnt repeat ho rh h usme key lgani hai jaise isme li
+         <li key={item.name}>                              {/*  //jo html elemnt repeat ho rh h usme key lgani hai jaise isme li */}
+<button
+onClick={()=>navigate(item.slug)}
+   className='inline-bock px-6 py-2 duration-200 hover:bg-blue-100 rounded-full'
+>{item.name}</button>                             {/* //isme navigtion wala kaam    */}
+        </li>                                                             
        ):null                                                          //agar item active hai toh kuch aur nhi h toh null display
              )}
+              {authStatus && (
+                <li>
+                  <LogoutBtn/>
+                </li>
+              )}       
           </ul>
         
       </nav>
